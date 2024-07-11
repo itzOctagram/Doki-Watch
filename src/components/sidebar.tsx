@@ -93,7 +93,7 @@ const Sidebar = () => {
     // Add your logic here
 
     window.open(
-      "https://anilist.co/api/v2/oauth/authorize?client_id=19791&response_type=token",
+      "https://anilist.co/api/v2/oauth/authorize?client_id=19753&response_type=token",
       "_blank"
     );
     setOpen(false); // Close the dialog after submission
