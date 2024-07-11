@@ -16,10 +16,10 @@ export const Watch: React.FC = () => {
 
   let params = useParams<{ id: any }>();
   let id: string = params.id;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(id);
         const response = await fetch(
           `${import.meta.env.VITE_CONSUMET_API_ENDPOINT}watch/${id}`
         );
@@ -88,8 +88,8 @@ export const Watch: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-full max-w-4xl relative">
+    <div className="flex flex-col items-center h-screen overflow-auto">
+      <div className="fixed top-0 w-full max-w-4xl">
         {streamUrl ? (
           <div onLoad={reload}>
             <button
@@ -198,6 +198,8 @@ export const Watch: React.FC = () => {
             ))}
           </div>
         )}
+      </div>
+      <div className="mt-[600px] w-full max-w-4xl">
         {/* Disqus Comment Section */}
         <DiscussionEmbed
           shortname="domain-of-weebs"
