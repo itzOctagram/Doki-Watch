@@ -174,7 +174,7 @@ export const Watch: React.FC = () => {
         )}
 
         {/* Disqus Comment Section */}
-        <div className="mt-10">
+        <div className="mt-10 p-6 bg-[#1F2837] text-white rounded-lg">
           <DiscussionEmbed
             shortname="domain-of-weebs"
             config={{
