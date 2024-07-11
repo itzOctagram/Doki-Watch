@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import { DiscussionEmbed } from "disqus-react";
@@ -12,6 +12,7 @@ export const Watch: React.FC = () => {
   const [streamUrl, setStreamUrl] = useState<string | null>(null);
   const [sources, setSources] = useState<Source[]>([]);
   const [settingsVisible, setSettingsVisible] = useState(false);
+  const playerRef = useRef<ReactPlayer>(null);
 
   let params = useParams<{ id: any }>();
   let id: string = params.id;
@@ -74,6 +75,18 @@ export const Watch: React.FC = () => {
     id = newId;
   };
 
+  const skipForward = () => {
+    if (playerRef.current) {
+      playerRef.current.seekTo(playerRef.current.getCurrentTime() + 10);
+    }
+  };
+
+  const skipBackward = () => {
+    if (playerRef.current) {
+      playerRef.current.seekTo(playerRef.current.getCurrentTime() - 10);
+    }
+  };
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="w-full max-w-4xl relative">
@@ -123,7 +136,20 @@ export const Watch: React.FC = () => {
                 />
               </svg>
             </button>
+            <button
+              onClick={skipBackward}
+              className="p-2 bg-black bg-opacity-50 text-white border-none cursor-pointer"
+            >
+              -10s
+            </button>
+            <button
+              onClick={skipForward}
+              className="p-2 bg-black bg-opacity-50 text-white border-none cursor-pointer"
+            >
+              +10s
+            </button>
             <ReactPlayer
+              ref={playerRef}
               url={streamUrl}
               playing={true}
               controls={true}
@@ -185,19 +211,10 @@ export const Watch: React.FC = () => {
         <style>
           {`
           #disqus_thread a {
-            color: gray;
+            color: #39FF14;
           }
           #layout {
             background-color: black;
-          }
-          #thread__wrapper {
-            background-color: black;
-          }
-          #thread__container {
-            background-color: black;
-          }
-          #disqus_thread {
-            background: red;
           }
         `}
         </style>
