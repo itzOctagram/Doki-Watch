@@ -190,13 +190,15 @@ export const Watch: React.FC = () => {
           #layout {
             background-color: black;
           }
-            #thread__wrapper {
-              background-color: black;
-            }
-              #thread__container {
-                background-color: black;
-                }
-
+          #thread__wrapper {
+            background-color: black;
+          }
+          #thread__container {
+            background-color: black;
+          }
+          #disqus_thread {
+            background: red;
+          }
         `}
         </style>
       </div>
