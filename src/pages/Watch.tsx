@@ -181,7 +181,7 @@ export const Watch: React.FC = () => {
               url: window.location.href,
               identifier: id,
               title: `Episode ${id}`,
-              language: "zh_TW", // e.g. for Traditional Chinese (Taiwan)
+              language: "en", // e.g. for Traditional Chinese (Taiwan)
             }}
           />
         </div>
