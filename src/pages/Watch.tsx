@@ -187,9 +187,9 @@ export const Watch: React.FC = () => {
           #disqus_thread a {
             color: gray;
           }
-            #layout {
-            color: black;
-            }
+          #layout {
+            background-color: black;
+          }
         `}
         </style>
       </div>
