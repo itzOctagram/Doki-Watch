@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import { DiscussionEmbed } from "disqus-react";
+
 interface Source {
   url: string;
   quality: string;
@@ -52,10 +53,6 @@ export const Watch: React.FC = () => {
       a.click();
     }
   };
-  //TODO: @Eshan276 @Gadzrux @karan8404 Implement the next and previous episode functionality
-
-  // Assuming params.id is in the format "someString-EpisodeNumber"
-  // and useParams is from 'react-router-dom' for navigation
 
   const handlePrev = () => {
     let episodeNumber: number = parseInt(id[id.length]);
@@ -76,31 +73,6 @@ export const Watch: React.FC = () => {
     );
     id = newId;
   };
-
-  // useEffect(() => {
-  //   // Add the following code to the useEffect hook
-  //   const episode = sources.find((source) => source.url === streamUrl)?.episode;
-  //   console.log(episode);
-  //   if (episode) {
-  //     setCurrentEpisode(episode);
-  //   }
-  // }, [streamUrl, sources]);
-
-  // const handleNextEpisode = () => {
-  //   const nextEpisode = sources.find((source) => source.episode === currentEpisode + 1);
-  //   console.log(nextEpisode);
-  //   if (nextEpisode) {
-  //     setStreamUrl(nextEpisode.url);
-  //   }
-  // };
-
-  // const handlePreviousEpisode = () => {
-  //   const previousEpisode = sources.find((source) => source.episode === currentEpisode - 1);
-  //   console.log(previousEpisode);
-  //   if (previousEpisode) {
-  //     setStreamUrl(previousEpisode.url);
-  //   }
-  // };
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -200,16 +172,20 @@ export const Watch: React.FC = () => {
             ))}
           </div>
         )}
+
+        {/* Disqus Comment Section */}
+        <div className="mt-10">
+          <DiscussionEmbed
+            shortname="domain-of-weebs"
+            config={{
+              url: window.location.href,
+              identifier: id,
+              title: `Episode ${id}`,
+              language: "zh_TW", // e.g. for Traditional Chinese (Taiwan)
+            }}
+          />
+        </div>
       </div>
-      <DiscussionEmbed
-        shortname="domain-of-weebs"
-        config={{
-          url: `https://domainofweeb.netlify.app/watch/${id}`,
-          identifier: id,
-          title: `Watch ${id}`,
-          language: "en", //e.g. for Traditional Chinese (Taiwan)
-        }}
-      />
     </div>
   );
 };
