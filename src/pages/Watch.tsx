@@ -172,20 +172,24 @@ export const Watch: React.FC = () => {
             ))}
           </div>
         )}
-
-        {/* Disqus Comment Section */}
-        <div className="mt-10 p-6 bg-[#1F2837] text-white rounded-lg">
-          <DiscussionEmbed
-            shortname="domain-of-weebs"
-            config={{
-              url: window.location.href,
-              identifier: id,
-              title: `Episode ${id}`,
-              language: "en", // e.g. for Traditional Chinese (Taiwan)
-            }}
-          />
-        </div>
       </div>
+      {/* Disqus Comment Section */}
+      <DiscussionEmbed
+        shortname="domain-of-weebs"
+        config={{
+          url: window.location.href,
+          identifier: id,
+          title: `Episode ${id}`,
+          language: "en", // e.g. for Traditional Chinese (Taiwan)
+        }}
+      />
+      <style>
+        {`
+          #disqus_thread a {
+            color: blue;
+          }
+        `}
+      </style>
     </div>
   );
 };
